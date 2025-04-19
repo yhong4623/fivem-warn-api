@@ -3,19 +3,16 @@ import logging
 from api.api import start_api
 from bot.bot import start_bot
 
-# 設置日誌
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Discord Bot Token
-BOT_TOKEN = "MTA5OTMzMTUyNDYxODM3NTI0OA.GhY9Be.pDATyf43F4EGM8Xyy8ZfOT34NgkgXD5pVWNd9U"  # 替換為你的 Discord Bot Token
+BOT_TOKEN = "Token"
 
 async def main():
-    # 同時啟動 API 和機器人
     api_task = asyncio.create_task(start_api())
     bot_task = asyncio.create_task(start_bot(BOT_TOKEN))
     
-    # 等待兩者完成（實際上會持續運行直到中斷）
     await asyncio.gather(api_task, bot_task)
 
 if __name__ == "__main__":
