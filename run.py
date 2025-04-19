@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Discord Bot Token
-BOT_TOKEN = "Token"
+BOT_TOKEN = "MTA5OTMzMTUyNDYxODM3NTI0OA.GhY9Be.pDATyf43F4EGM8Xyy8ZfOT34NgkgXD5pVWNd9U"
 
 async def main():
     api_task = asyncio.create_task(start_api())
