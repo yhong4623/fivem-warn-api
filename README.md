@@ -18,13 +18,11 @@
 
 ## 專案結構
 
-```
 run.py
 api/
     api.py
 bot/
     bot.py
-```
 
 - `run.py`：主程式入口，啟動 API 和 Discord 機器人。
 - `api/api.py`：API 伺服器的實作，包含資料庫操作與路由處理。
