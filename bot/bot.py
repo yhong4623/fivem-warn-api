@@ -132,19 +132,14 @@ class WarnBot(discord.Client):
 def extract_json_from_response(response):
     """從API響應中提取JSON數據，適應不同類型的响應對象"""
     if hasattr(response, 'text') and callable(getattr(response, 'json', None)):
-        # 這是aiohttp.web.Response對象
         return response._body.decode('utf-8') if hasattr(response, '_body') else None
     elif hasattr(response, 'body'):
-        # 一些response對象可能直接有body屬性
         return response.body.decode('utf-8') if isinstance(response.body, bytes) else response.body
     elif isinstance(response, dict):
-        # 如果已經是字典，則直接返回
         return response
     elif isinstance(response, str):
-        # 如果是JSON字符串，則返回字符串
         return response
     else:
-        # 不知道如何處理，記錄錯誤並返回空字典
         logger.error(f"無法從響應提取JSON：{type(response)}")
         return "{}"
 

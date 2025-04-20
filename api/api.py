@@ -6,24 +6,20 @@ import random
 import logging
 import socket
 
-# 設置日誌
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# --- 獲取本機 IP 函數 ---
 def get_local_ip():
     try:
-        # 創建一個臨時 socket 連接到外部主機（不實際發送數據）
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80))  # 使用 Google DNS 作為目標
+        s.connect(("8.8.8.8", 80))
         ip = s.getsockname()[0]
         s.close()
         return ip
     except Exception as e:
         logger.error(f"無法獲取本機 IP: {str(e)}")
-        return "127.0.0.1"  # 失敗時回退到 localhost
+        return "127.0.0.1"
 
-# --- 資料庫相關函數 ---
 def get_db_connection():
     conn = sqlite3.connect('./db.sqlite')
     conn.row_factory = sqlite3.Row
@@ -67,14 +63,12 @@ def generate_unique_warn_id():
             conn.close()
             return warn_id
 
-# --- API 路由 ---
 async def add_identifiers(request):
     try:
         data = await request.json()
-        identifiers = data.get('identifiers', [])  # Default to empty list if not provided
+        identifiers = data.get('identifiers', [])
         warning_reason = data.get('warning_reason')
         
-        # Make warning_reason mandatory
         if not warning_reason or not isinstance(warning_reason, str) or warning_reason.strip() == '':
             return web.json_response({'error': '警告原因為必填欄位'}, status=400)
             
@@ -153,7 +147,6 @@ async def delete_warn(request):
         logger.error(f'刪除錯誤: {str(e)}')
         return web.json_response({'error': f'刪除過程中發生錯誤: {str(e)}'}, status=500)
 
-# --- API 啟動函數 ---
 async def start_api():
     initialize_database()
     app = web.Application()
@@ -163,7 +156,6 @@ async def start_api():
     runner = web.AppRunner(app)
     await runner.setup()
     
-    # 動態獲取本機 IP
     host = get_local_ip()
     port = 3000
     site = web.TCPSite(runner, host, port)

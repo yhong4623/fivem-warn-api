@@ -22,3 +22,4 @@ if __name__ == "__main__":
         logger.info("程式正在關閉...")
     except Exception as e:
         logger.error(f"啟動失敗: {str(e)}")
+
