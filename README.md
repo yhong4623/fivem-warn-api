@@ -23,11 +23,11 @@ api/
     api.py
 bot/
     bot.py
-
+```
 - `run.py`：主程式入口，啟動 API 和 Discord 機器人。
 - `api/api.py`：API 伺服器的實作，包含資料庫操作與路由處理。
 - `bot/bot.py`：Discord 機器人的實作，包含指令處理與互動邏輯。
-```
+
 ## 安裝與使用
 
 ### 1. 安裝依賴
