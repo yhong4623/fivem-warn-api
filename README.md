@@ -1,8 +1,8 @@
-```markdown
+
 # FiveM Warn API and Discord Bot
 
 此專案是一個結合 **FiveM 警告管理 API** 和 **Discord 機器人** 的應用程式，提供玩家警告記錄的新增、查詢與刪除功能。
-
+```markdown
 ## 功能特性
 
 ### API 功能
@@ -19,7 +19,6 @@
 ## 專案結構
 
 ```
-.gitattributes
 run.py
 api/
     api.py
